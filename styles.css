@@ -62,6 +62,7 @@ body {
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-lg);
     padding: 2rem;
+    transition: background var(--transition-speed), box-shadow var(--transition-speed);
 }
 
 /* ==================== */
@@ -138,7 +139,7 @@ body {
     box-shadow: var(--shadow-sm);
     text-align: center;
     flex: 1;
-    transition: transform var(--transition-speed);
+    transition: transform var(--transition-speed), background var(--transition-speed), box-shadow var(--transition-speed);
 }
 
 .stat-item:hover {
@@ -239,11 +240,15 @@ body {
 /* Game Board */
 /* ==================== */
 .game-board {
-    display: grid;
+    display: none; /* Hidden initially */
     gap: 0.75rem;
     margin-bottom: 2rem;
     justify-content: center;
     padding: 1rem;
+}
+
+.game-board:not(.hidden) {
+    display: grid;
 }
 
 .game-board.easy {
@@ -329,6 +334,10 @@ body {
     flex-wrap: wrap;
 }
 
+.controls.hidden {
+    display: none;
+}
+
 /* ==================== */
 /* High Scores */
 /* ==================== */
@@ -338,6 +347,7 @@ body {
     background: var(--bg-card);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-sm);
+    transition: all var(--transition-speed);
 }
 
 .high-scores-section.hidden {
@@ -348,6 +358,8 @@ body {
     text-align: center;
     margin-bottom: 1rem;
     color: var(--text-dark);
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
 .high-scores-tabs {
@@ -585,6 +597,32 @@ body {
     .modal-content {
         padding: 2rem;
         margin: 1rem;
+    }
+
+    .high-scores-section {
+        padding: 1rem;
+    }
+
+    .high-scores-tabs {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .score-tab {
+        flex: 1;
+        min-width: 80px;
+    }
+
+    .score-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .score-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
     }
 }
 

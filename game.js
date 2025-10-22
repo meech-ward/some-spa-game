@@ -159,7 +159,18 @@ class ThemeManager {
      */
     init() {
         this.themeToggleBtn = document.getElementById('themeToggle');
+
+        if (!this.themeToggleBtn) {
+            console.warn('Theme toggle button not found');
+            return;
+        }
+
         this.themeIcon = this.themeToggleBtn.querySelector('.theme-icon');
+
+        if (!this.themeIcon) {
+            console.warn('Theme icon not found');
+            return;
+        }
 
         // Apply saved theme
         this.applyTheme(this.darkMode);
@@ -183,12 +194,12 @@ class ThemeManager {
     applyTheme(isDark) {
         if (isDark) {
             document.body.classList.add('dark-mode');
-            this.themeIcon.textContent = '☀️';
-            this.themeToggleBtn.setAttribute('aria-label', 'Toggle light mode');
+            if (this.themeIcon) this.themeIcon.textContent = '☀️';
+            if (this.themeToggleBtn) this.themeToggleBtn.setAttribute('aria-label', 'Toggle light mode');
         } else {
             document.body.classList.remove('dark-mode');
-            this.themeIcon.textContent = '🌙';
-            this.themeToggleBtn.setAttribute('aria-label', 'Toggle dark mode');
+            if (this.themeIcon) this.themeIcon.textContent = '🌙';
+            if (this.themeToggleBtn) this.themeToggleBtn.setAttribute('aria-label', 'Toggle dark mode');
         }
     }
 }
@@ -593,17 +604,28 @@ class GameController {
     }
 
     showDifficultySelection() {
+        // Show difficulty selection panel and high scores
         document.getElementById('difficultyPanel').classList.remove('hidden');
-        document.getElementById('gameBoard').classList.add('hidden');
         document.getElementById('highScoresSection').classList.remove('hidden');
+
+        // Hide game board and controls
+        document.getElementById('gameBoard').classList.add('hidden');
+        const controls = document.querySelector('.controls');
+        if (controls) controls.classList.add('hidden');
+
         this.state.stopTimer();
         this.keyboardNav.disable();
     }
 
     hideDifficultySelection() {
+        // Hide difficulty selection panel
         document.getElementById('difficultyPanel').classList.add('hidden');
+
+        // Show game board, controls, and high scores
         document.getElementById('gameBoard').classList.remove('hidden');
         document.getElementById('highScoresSection').classList.remove('hidden');
+        const controls = document.querySelector('.controls');
+        if (controls) controls.classList.remove('hidden');
     }
 
     startNewGame(difficulty) {
