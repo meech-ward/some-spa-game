@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A fun memory card matching game built with modern web technologies">
+    <title>Memory Match Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🧠 Memory Match</h1>
+            <p class="subtitle">Find all matching pairs!</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Game Stats -->
+            <div class="stats-panel">
+                <div class="stat-item">
+                    <span class="stat-label">Moves</span>
+                    <span class="stat-value" id="moves">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Time</span>
+                    <span class="stat-value" id="timer">0:00</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Matches</span>
+                    <span class="stat-value" id="matches">0/8</span>
+                </div>
+            </div>
+
+            <!-- Difficulty Selection -->
+            <div class="difficulty-panel" id="difficultyPanel">
+                <h2>Choose Difficulty</h2>
+                <div class="difficulty-buttons">
+                    <button class="btn btn-difficulty" data-difficulty="easy">
+                        Easy<br><small>4x4 Grid</small>
+                    </button>
+                    <button class="btn btn-difficulty" data-difficulty="medium">
+                        Medium<br><small>4x5 Grid</small>
+                    </button>
+                    <button class="btn btn-difficulty" data-difficulty="hard">
+                        Hard<br><small>6x6 Grid</small>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Game Board -->
+            <div class="game-board" id="gameBoard"></div>
+
+            <!-- Control Buttons -->
+            <div class="controls">
+                <button class="btn btn-primary" id="restartBtn">New Game</button>
+                <button class="btn btn-secondary" id="changeDifficultyBtn">Change Difficulty</button>
+            </div>
+        </main>
+
+        <!-- Win Modal -->
+        <div class="modal" id="winModal">
+            <div class="modal-content">
+                <h2>🎉 Congratulations!</h2>
+                <p>You've matched all the cards!</p>
+                <div class="modal-stats">
+                    <p><strong>Moves:</strong> <span id="finalMoves"></span></p>
+                    <p><strong>Time:</strong> <span id="finalTime"></span></p>
+                </div>
+                <button class="btn btn-primary" id="playAgainBtn">Play Again</button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>Built with modern web technologies</p>
+        </footer>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
